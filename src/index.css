@@ -1,0 +1,11 @@
+input[type='date']::-webkit-inner-spin-button, input[type='date']::-webkit-clear-button {
+  display: none;
+}
+
+div#comp {
+  padding-top: 50px;
+}
+
+.navbar-form {
+  text-align: center;
+}
