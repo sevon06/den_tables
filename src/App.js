@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import 'react-table/react-table.css';
 import {Button, ControlLabel, FormControl, FormGroup, Navbar, Table} from 'react-bootstrap'
 import moment from 'moment';
 import InfoComponent from './components/InfoComponent'
