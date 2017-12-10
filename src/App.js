@@ -11,7 +11,8 @@ class App extends Component {
       apiKeys: '',
       startDate: moment().startOf('year').format('YYYY-MM-DD'),
       endDate: moment().endOf('year').format('YYYY-MM-DD'),
-      components: []
+      components: [],
+      showTable: 'none'
     };
   }
 
@@ -44,7 +45,10 @@ class App extends Component {
           endDate={endDate}/>
       )
     }
-    this.setState({components: components})
+    this.setState({
+      components: components,
+      showTable: 'block'
+    })
   };
 
   render() {
@@ -89,7 +93,7 @@ class App extends Component {
               placeholder="API-Keys"/>
             <br/>
           </div>
-          <div className="col-lg-4 col-lg-offset-4">
+          <div className="col-lg-4 col-lg-offset-4" style={{display: this.state.showTable}}>
             <Table striped bordered condensed hover>
               <thead>
               <tr>

@@ -22,7 +22,8 @@ class InfoComponent extends Component {
       plan: '',
       records: [],
       num: num,
-      apiKey: apiKey
+      apiKey: apiKey,
+      exportDisabled: true,
     };
   }
 
@@ -47,6 +48,11 @@ class InfoComponent extends Component {
   };
 
   async componentDidMount() {
+    this.setState({
+      total: <i class="fa fa-spinner fa-pulse fa-fw"/>,
+      licnum: <i class="fa fa-spinner fa-pulse fa-fw"/>,
+      plan: <i class="fa fa-spinner fa-pulse fa-fw"/>,
+    });
     if (this.state.apiKey) {
       await fetch(this.state.infoUrl)
         .then(response => response.json())
@@ -66,20 +72,21 @@ class InfoComponent extends Component {
           this.setState({
             total: total.toFixed(2),
             records: data,
+            exportDisabled: false,
           })
         });
     }
   }
 
   render() {
-    const {num, licnum, plan, total} = this.state;
+    const {num, licnum, plan, total, exportDisabled} = this.state;
     return (
       <tr>
         <th>{num}</th>
         <th>{licnum}</th>
         <th>{plan}</th>
         <th>{total}</th>
-        <th><Button bsStyle='link' onClick={this.exportToExcel}>Скачать</Button></th>
+        <th><Button bsStyle='link' disabled={exportDisabled} onClick={this.exportToExcel}>Скачать</Button></th>
       </tr>
     )
   }
